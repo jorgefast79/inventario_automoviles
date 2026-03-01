@@ -19,6 +19,7 @@ function App(){
   const [supplier, setSupplier] = useState("");
   const [condition, setCondition] = useState("");
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,7 +33,7 @@ function App(){
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:5000/api/categories",
+      `${API_URL}/categories`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -49,12 +50,12 @@ function App(){
       const token = localStorage.getItem("token");
 
       const brandsRes = await axios.get(
-        "http://localhost:5000/api/brands",
+        `${API_URL}/brands`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       const suppliersRes = await axios.get(
-        "http://localhost:5000/api/suppliers",
+        `${API_URL}/suppliers`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -72,7 +73,7 @@ function App(){
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:5000/api/models/${brand}`,
+        `${API_URL}/models/${brand}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -84,7 +85,7 @@ function App(){
 
   useEffect(()=>{
     if(token){
-      axios.get('http://localhost:5000/api/parts',{
+      axios.get(`${API_URL}/parts`,{
         headers:{Authorization:'Bearer '+token}
       }).then(res=>setParts(res.data));
     }
@@ -92,7 +93,7 @@ function App(){
 
   const addPart = () => {
     axios.post(
-      'http://localhost:5000/api/parts',
+      `${API_URL}/parts`,
       {
         code: Date.now().toString(),
         name,
