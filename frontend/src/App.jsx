@@ -23,6 +23,7 @@ function App(){
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log(token + 'token');
     if (!token) {
       navigate("/login");
     }
@@ -39,6 +40,8 @@ function App(){
         }
       );
 
+      console.log(res.data + 'fetch categories');
+
       setCategories(res.data);
     };
 
@@ -54,10 +57,14 @@ function App(){
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
+      console.log(brandsRes.data + 'fetch Res');
+
       const suppliersRes = await axios.get(
         `${API_URL}/suppliers`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
+      console.log(suppliersRes.data + 'fetch suppliers');
 
       setBrands(brandsRes.data);
       setSuppliers(suppliersRes.data);
@@ -76,6 +83,8 @@ function App(){
         `${API_URL}/models/${brand}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
+      console.log(res.data + 'fetch models');
 
       setModels(res.data);
     };
