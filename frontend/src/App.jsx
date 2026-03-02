@@ -32,6 +32,7 @@ function App(){
   useEffect(() => {
     const fetchCategories = async () => {
       const token = localStorage.getItem("token");
+      console.log(token);
 
       const res = await axios.get(
       `${API_URL}/categories`,
@@ -51,6 +52,7 @@ function App(){
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
+      console.log(token);
 
       const brandsRes = await axios.get(
         `${API_URL}/brands`,
@@ -78,6 +80,7 @@ function App(){
 
     const fetchModels = async () => {
       const token = localStorage.getItem("token");
+      console.log(token);
 
       const res = await axios.get(
         `${API_URL}/models/${brand}`,
